@@ -1,0 +1,41 @@
+{% extends 'comics/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="settings-panel">
+            <h2>Настройки отображения</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-save">Сохранить настройки</button>
+            </form>
+        </div>
+
+        <h2>Доступные комиксы</h2>
+        <div class="comics-grid">
+            {% for comic in comics %}
+                <div class="comic-card">
+                    <img src="/static/images/{{ comic.image }}" alt="{{ comic.title }}">
+                    <h3>{{ comic.title }}</h3>
+                    <p class="author">Автор: {{ comic.author }}</p>
+                    <p class="genre">Жанр: {{ comic.genre }}</p>
+                    <a href="{% url 'comic_detail' comic.id %}" class="btn-read">Читать</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if viewed_comics %}
+            <div class="recently-viewed">
+                <h3>Недавно просмотренные</h3>
+                <div class="viewed-grid">
+                    {% for comic in viewed_comics %}
+                        <div class="viewed-card">
+                            <img src="/static/images/{{ comic.image }}" alt="{{ comic.title }}">
+                            <h4>{{ comic.title }}</h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

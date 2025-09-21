@@ -1,0 +1,23 @@
+{% extends 'comics/base.html' %}
+
+{% block title %}{{ comic.title }} - Комиксы Онлайн{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="comic-detail">
+            <h1>{{ comic.title }}</h1>
+            <div class="comic-meta">
+                <span class="author">Автор: {{ comic.author }}</span>
+                <span class="genre">Жанр: {{ comic.genre }}</span>
+                <span class="pages">Страниц: {{ comic.pages }}</span>
+            </div>
+
+            <div class="comic-content">
+                <img src="/static/images/{{ comic.image }}" alt="{{ comic.title }}" class="comic-image">
+                <p class="description">{{ comic.description }}</p>
+            </div>
+
+            <a href="{% url 'comics_list' %}" class="btn-back">← Назад к списку</a>
+        </div>
+    </div>
+{% endblock %}

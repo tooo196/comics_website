@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Комиксы Онлайн{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            font-size: {{ current_font_size }}px;
+        {% if current_theme == 'dark' %}
+            background-color: #1a1a1a;
+            color: #ffffff;
+        {% elif current_theme == 'comic' %}
+            background-color: #fff8e1;
+            color: #333;
+            font-family: 'Comic Sans MS', cursive;
+        {% else %}
+            background-color: #ffffff;
+            color: #333;
+        {% endif %}
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>🎭 Комиксы Онлайн</h1>
+    <nav>
+        <a href="{% url 'comics_list' %}">Главная</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>© 2024 Комиксы Онлайн. Все права защищены.</p>
+</footer>
+</body>
+</html>
